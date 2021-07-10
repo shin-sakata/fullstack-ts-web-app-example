@@ -1,12 +1,15 @@
 overwrite: true
-schema: "pages/api/schema.gql"
+schema: pages/api/graphql/schema.gql
+documents: pages/api/graphql/**/*.gql
 generates:
-  pages/api/types/graphql.ts:
+  pages/api/types/schema.ts:
     plugins:
       - typescript
-      - typescript-operations
       - typescript-resolvers
-
     config:
       avoidOptionals: true
       useIndexSignature: true
+  pages/api/types/client.ts:
+    - typescript
+    - typescript-operations
+    - typescript-react-apollo

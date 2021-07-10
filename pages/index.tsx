@@ -1,19 +1,17 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client"
-
-const GREET = gql`
-  query {
-    hello
-  }
-`
+import { useGreetQuery } from "./api/types/client"
 
 export default function Home() {
-  const { loading, error, data } = useQuery(GREET)
+  const { error, data } = useGreetQuery()
 
-  if (loading) return <p>loading...</p>
+  if (!data) return <p>loading...</p>
   if (error) {
-    console.error(error)
+    console.error(error.message)
     return <p>Error!</p>
   }
 
-  return <h1>Hello {data.hello}</h1>
+  return (
+    <h1>
+      Hello {data.greet.name} {data.greet.msg}
+    </h1>
+  )
 }

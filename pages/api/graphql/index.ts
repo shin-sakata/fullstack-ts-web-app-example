@@ -1,13 +1,17 @@
 import { ApolloServer, Config } from "apollo-server-micro"
 import { importSchema } from "graphql-import"
-import { Resolvers } from "./types/graphql"
+import { Hello, QueryResolvers } from "../types/schema"
 
 const typeDefs = importSchema("pages/api/schema.gql")
 
-const hello: Resolvers["Query"]["hello"] = (parent, args, context) => "world"
+const hello: Hello = { msg: "GraphQL", name: "hoge" }
 
-const resolvers: Resolvers = {
-  Query: { hello },
+const Query: QueryResolvers = {
+  greet: () => hello,
+}
+
+const resolvers = {
+  Query,
 }
 
 const apolloServer = new ApolloServer({
