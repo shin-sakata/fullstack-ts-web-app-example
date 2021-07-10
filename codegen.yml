@@ -1,15 +1,15 @@
 overwrite: true
-schema: pages/api/graphql/schema.gql
-documents: pages/api/graphql/**/*.gql
+schema: graphql/schema.gql
+documents: graphql/**/*.gql
 generates:
-  pages/api/types/schema.ts:
+  graphql/codegen/schema.ts:
     plugins:
       - typescript
       - typescript-resolvers
     config:
       avoidOptionals: true
       useIndexSignature: true
-  pages/api/types/client.ts:
+  graphql/codegen/client.ts:
     - typescript
     - typescript-operations
     - typescript-react-apollo

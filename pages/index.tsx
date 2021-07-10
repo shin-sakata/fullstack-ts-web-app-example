@@ -1,4 +1,4 @@
-import { useGreetQuery } from "./api/types/client"
+import { useGreetQuery } from "@graphql/client"
 
 export default function Home() {
   const { error, data } = useGreetQuery()

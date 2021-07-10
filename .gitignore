@@ -34,5 +34,4 @@ yarn-error.log*
 .vercel
 
 # codegen
-/pages/api/types/schema.ts
-/pages/api/types/client.ts
+/graphql/codegen
