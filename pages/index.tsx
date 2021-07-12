@@ -1,17 +1,19 @@
 import { useGreetQuery } from "@graphql/client"
 
 export default function Home() {
-  const { error, data } = useGreetQuery()
+  const { error, data, loading } = useGreetQuery()
 
-  if (!data) return <p>loading...</p>
+  if (loading) return <p>loading...</p>
   if (error) {
     console.error(error.message)
     return <p>Error!</p>
   }
 
-  return (
-    <h1>
-      Hello {data.greet.name} {data.greet.msg}
-    </h1>
-  )
+  if (data) {
+    return (
+      <h1>
+        Hello {data.greet.name} {data.greet.msg}
+      </h1>
+    )
+  }
 }

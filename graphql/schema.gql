@@ -1,5 +1,6 @@
 type Query {
   greet: Hello!
+  privateGreet: Hello!
 }
 
 type Hello {
