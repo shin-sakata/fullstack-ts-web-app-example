@@ -9,6 +9,7 @@ generates:
     config:
       avoidOptionals: true
       useIndexSignature: true
+      contextType: "@app/graphql/apolloServer#Context"
   graphql/codegen/client.ts:
     - typescript
     - typescript-operations

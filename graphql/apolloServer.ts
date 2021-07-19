@@ -2,6 +2,8 @@ import { ApolloServer, AuthenticationError } from "apollo-server-micro"
 import { importSchema } from "graphql-import"
 import { Hello, QueryResolvers } from "@graphql/schema"
 import { getSession } from "next-auth/client"
+import { Session } from "next-auth"
+import { NextApiRequest } from "next"
 
 const typeDefs = importSchema("graphql/schema.gql")
 
@@ -13,7 +15,8 @@ const Query: QueryResolvers = {
   },
 
   privateGreet: (_, __, ctx) => {
-    if (ctx.user) {
+    if (ctx.session?.user) {
+      console.log(ctx.session.user)
       return hello
     } else {
       throw AuthenticationError
@@ -25,11 +28,15 @@ const resolvers = {
   Query,
 }
 
+const context = async (ctx: { req: NextApiRequest }) => {
+  const session = await getSession(ctx)
+  return { session }
+}
+
+export type Context = { session: Session | null }
+
 export const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  context: async (context) => {
-    const session = await getSession(context)
-    return session
-  },
+  context,
 })

@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# typescript incremental build
+*.tsbuildinfo
+
 # next.js
 /.next/
 /out/

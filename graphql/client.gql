@@ -4,3 +4,10 @@ query greet {
     name
   }
 }
+
+query privateGreet {
+  privateGreet {
+    msg
+    name
+  }
+}
