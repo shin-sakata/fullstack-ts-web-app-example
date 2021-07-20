@@ -2,7 +2,6 @@ import * as db from "@app/prisma"
 import type { Profile as NextAuthProfile } from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { Adapter, AdapterInstance } from "next-auth/adapters"
-import { createHash, randomBytes } from "crypto"
 
 type Client = { prisma: db.PrismaClient; redis: any }
 
